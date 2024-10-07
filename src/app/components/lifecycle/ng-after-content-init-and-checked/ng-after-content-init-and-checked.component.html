@@ -1,0 +1,6 @@
+<ng-content></ng-content>
+<!-- This three-step process happens because:
+
+The initial check ensures that the component is set up correctly. (One time)
+The second check happens when a state change triggers a re-render.( when the onchangeInput is updated)
+The third check ensures that any DOM changes (e.g., showing or hiding of the popup) are fully processed. (due to ngif)-->

@@ -1,0 +1,98 @@
+<div class="container">
+  <button class="btn btn-primary" (click)="jsonToggle = !jsonToggle">
+    Get Rooms Async
+  </button>
+  <div class="row mt-5" [hidden]="jsonToggle">
+    <div class="col-12">
+      <!-- {{ getRooms$ | async | json }} -->
+    </div>
+  </div>
+  <div
+    class="row mt-5"
+    [hidden]="jsonToggle"
+    *ngIf="getRooms$ | async as asyncRooms"
+  >
+    <h4>Simple Rooms</h4>
+
+    <div class="col" *ngFor="let room of asyncRooms; let last = last">
+      <div class="card" style="width: 12rem">
+        <div class="card-body">
+          <strong class="card-title">{{ room.roomType }}</strong>
+          <!-- <p>Url ( {{ room.photos }} )</p> -->
+          <p>{{ room.roomNumber }}</p>
+          <p>{{ room.amenities }}</p>
+          <p>{{ room.checkinTime | date : "dd/MM/yyyy" }}</p>
+          <p>{{ room.checkoutTime | date : "dd/MM/yyyy" }}</p>
+          <p>{{ room.rating }} ⭐</p>
+          <p>{{ room.price | currency }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="row mt-5"
+    [hidden]="jsonToggle"
+    *ngIf="doublePrice$ | async as asyncRooms"
+  >
+    <h4>Simple Rooms with double price</h4>
+
+    <div class="col" *ngFor="let room of asyncRooms; let last = last">
+      <div class="card" style="width: 12rem">
+        <div class="card-body">
+          <strong class="card-title">{{ room.roomType }}</strong>
+          <!-- <p>Url ( {{ room.photos }} )</p> -->
+          <p>{{ room.roomNumber }}</p>
+          <p>{{ room.amenities }}</p>
+          <p>{{ room.checkinTime | date : "dd/MM/yyyy" }}</p>
+          <p>{{ room.checkoutTime | date : "dd/MM/yyyy" }}</p>
+          <p>{{ room.rating }} ⭐</p>
+          <p>{{ room.price | currency }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-3">
+      <button class="btn btn-primary" (click)="addRoom(newRoom)">
+        Add Room
+      </button>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-warning" (click)="updateRoom(updatedRoom)">
+        Update Room
+      </button>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-danger" (click)="deleteRoom('3')">
+        Delete Room
+      </button>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-danger" (click)="getRooms()">Get Rooms</button>
+    </div>
+  </div>
+  <div class="row mt-5" *ngIf="toggleRoom">
+    <div class="col" *ngFor="let room of allRooms; let last = last">
+      <div class="card" style="width: 12rem">
+        <img src="{{ room.photos }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <strong class="card-title">{{ room.roomType }}</strong>
+          <p>{{ room.roomNumber }}</p>
+          <p>{{ room.amenities }}</p>
+          <p>{{ room.checkinTime | date : "dd/MM/yyyy" }}</p>
+          <p>{{ room.checkoutTime | date : "dd/MM/yyyy" }}</p>
+          <p>{{ room.rating }} ⭐</p>
+          <a href="#" class="btn btn-primary">{{ room.price | currency }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-3">
+      <button class="btn btn-primary" (click)="getPhotos()">getPhotos</button>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-primary" (click)="sentHeaders()">sentHttpHeader</button>
+    </div>
+  </div>
+</div>

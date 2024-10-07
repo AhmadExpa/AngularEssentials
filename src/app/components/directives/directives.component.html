@@ -1,0 +1,50 @@
+<h3>Courses</h3>
+<div class="container" style="display: flex; justify-content: space-around">
+  <!-- NgIf & NgFor -->
+  <div class="box">
+    <h2>Courses Enrolled</h2>
+    <div *ngFor="let course of courses; let last = last">
+      <!-- let i = index, even as isEven, odd as isOdd -->
+      <ng-container *ngIf="course.enrolled">
+        <h4>{{ course.name }}</h4>
+        <h5>{{ course.duration }} hours</h5>
+        <h5>{{ course.enrolled ? "Enrolled" : "Not Enrolled" }}</h5>
+        <button (click)="toggleCourseEnrolled(course)">UnEnrolled</button>
+        <hr *ngIf="!last" />
+      </ng-container>
+    </div>
+  </div>
+  <div class="box">
+    <h2>Courses Not Enrolled</h2>
+    <div *ngFor="let course of courses; let last = last">
+      <ng-container *ngIf="!course.enrolled">
+        <h4>{{ course.name }}</h4>
+        <h5>{{ course.duration }} hours</h5>
+        <h5>{{ course.enrolled ? "Enrolled" : "Not Enrolled" }}</h5>
+        <button (click)="toggleCourseEnrolled(course)">Enrolled</button>
+        <hr *ngIf="!last" />
+      </ng-container>
+    </div>
+  </div>
+  <!-- NgSwitch & NgClass + NgStyle -->
+  <div class="box">
+    <h2>Courses</h2>
+    <div
+      *ngFor="let course of courses; let e = even"
+      [ngClass]="e ? 'even' : 'odd'"
+    >
+      <ng-container [ngSwitch]="course.enrolled">
+        <div *ngSwitchCase="true">
+          <h4>{{ course.name }} is Enrolled</h4>
+          <h5>{{ course.duration }} hours</h5>
+        </div>
+        <div *ngSwitchCase="false">
+          <h4>{{ course.name }} is Unenrolled</h4>
+          <h5 [ngStyle]="{ color: course.duration > 1 ? 'red' : 'brown' }">
+            {{ course.duration }} hours
+          </h5>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

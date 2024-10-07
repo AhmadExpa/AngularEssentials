@@ -1,0 +1,16 @@
+<h3>Courses CheckTime</h3>
+
+<div class="container" style="display: flex; justify-content: space-around">
+  <div class="box">
+    <h2>Courses</h2>
+    <div *ngFor="let course of courses">
+      <h4>
+        {{ course.name | uppercase }}
+      </h4>
+      <p>
+        CheckInTime: {{ course.checkInTime | date : "dd/MM/yyyy" }},
+        CheckOutTime: {{ course.checkOutTime | date : "dd/MM/yyyy" }}
+      </p>
+    </div>
+  </div>
+</div>

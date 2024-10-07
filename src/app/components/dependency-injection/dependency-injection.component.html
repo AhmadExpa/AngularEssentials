@@ -1,0 +1,10 @@
+<div class="container">
+  <ul>
+    <li *ngFor="let course of courses; let last = last">
+      <h4>{{ course.name }}</h4>
+      <h5>{{ course.price | currency : "INR" }}</h5>
+      <h5>{{ course.discount }}</h5>
+      <hr *ngIf="!last" />
+    </li>
+  </ul>
+</div>
